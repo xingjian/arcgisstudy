@@ -1,6 +1,6 @@
 /**@文件名: ArcgisServer.java @作者： promisePB xingjian@yeah.net @日期 2011-2-23 下午01:09:59 */
 
-package com.xingjian.util;
+package com.promise.cn.util;
 
 import com.esri.arcgis.carto.FeatureLayer;
 import com.esri.arcgis.carto.ILayer;
@@ -31,7 +31,7 @@ public class ArcgisServer {
 	/** 服务连接对象 **/
 	public ServerConnection serverConnection;
 	/** 初始化参数 **/
-	public String hostName = "172.18.18.203";
+	public String hostName = "127.0.0.1";
 	public String mapServerName = "testplp";
 	public String mapServerType = "MapServer";
 	public String userName = "administrator";

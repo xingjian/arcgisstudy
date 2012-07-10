@@ -1,12 +1,12 @@
 /**@文件名: PointCUSD.java @作者： promisePB xingjian@yeah.net @日期 2011-2-23 下午01:06:00 */
 
-package com.xingjian.plpcusd;
+package com.promise.cn.plpcusd;
 
 import com.esri.arcgis.geodatabase.FeatureClass;
 import com.esri.arcgis.geodatabase.IFeature;
 import com.esri.arcgis.geodatabase.IFields;
 import com.esri.arcgis.geometry.Point;
-import com.xingjian.util.ArcgisServer;
+import com.promise.cn.util.ArcgisServer;
 
 /**   
  * @类名: PointCUSD.java 

@@ -1,6 +1,6 @@
 /**@文件名: LineVO.java @作者： promisePB xingjian@yeah.net @日期 2011-2-23 下午05:02:07 */
 
-package com.xingjian.plpcusd;
+package com.promise.cn.plpcusd;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 /**@文件名: PointVO.java @作者： promisePB xingjian@yeah.net @日期 2011-2-23 下午03:09:22 */
 
-package com.xingjian.plpcusd;
+package com.promise.cn.plpcusd;
 
 /**   
  * @类名: PointVO.java 
