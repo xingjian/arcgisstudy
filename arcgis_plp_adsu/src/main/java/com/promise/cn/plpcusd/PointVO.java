@@ -25,6 +25,9 @@ public class PointVO {
 	
 	private String layerName;
 
+	public PointVO(){
+	}
+	
 	public PointVO(String mis_id,String name,double x,double y,int layerID,String layerName){
 		this.mis_id = mis_id;
 		this.name = name;

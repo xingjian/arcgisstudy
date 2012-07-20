@@ -58,7 +58,7 @@ public class PointCUSD {
 	}
 	
 	/**
-	 * 功能：
+	 * 功能：测试入口函数
 	 * 描述：
 	 * @param args
 	 */
