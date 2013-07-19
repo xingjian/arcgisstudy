@@ -136,8 +136,8 @@ public class ArcgisSdeConnection {
 	public void readExcel() throws IOException {
 		  List<PointVO> list = new ArrayList<PointVO>();
 		  GeneratorXY  g = new GeneratorXY();
-		  FileInputStream fis = new FileInputStream("C:\\beijing.xls"); // 根据excel文件路径创建文件流
-		  POIFSFileSystem fs = new POIFSFileSystem(fis); // 利用poi读取excel文件流
+		  FileInputStream fis = new FileInputStream("C:\\beijing.xls");//根据excel文件路径创建文件流
+		  POIFSFileSystem fs = new POIFSFileSystem(fis);//利用poi读取excel文件流
 		  HSSFWorkbook wb = new HSSFWorkbook(fs); // 读取excel工作簿
 		  HSSFSheet sheet = wb.getSheetAt(0); // 读取excel的sheet，0表示读取第一个、1表示第二个.....
 		  // 获取sheet中总共有多少行数据sheet.getPhysicalNumberOfRows()
@@ -154,7 +154,7 @@ public class ArcgisSdeConnection {
 		     int x = (int)cell1.getNumericCellValue();
 		     int y = (int)cell2.getNumericCellValue();
 		     String name = cell3.getStringCellValue();
-		     PointVO p =g.getPointVOByXY(x,y,name);
+		     PointVO p =g.getPointVOByXYExtendBeijing(x,y,name);
 		     addMapPoint(p);
 		   }
 		  }

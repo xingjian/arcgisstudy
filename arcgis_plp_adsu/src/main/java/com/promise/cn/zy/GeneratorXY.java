@@ -22,8 +22,8 @@ public class GeneratorXY {
 	public int unit = 1;
 	public double centerlgtd = 116.50191;
 	public double centerlttd = 40.28937;
-	public double lgtdUnit = 111.133;
-	public double lttdUnit = 111.319;
+	public double lgtdUnit = 111.000;
+	public double lttdUnit = 111.400;
 	
 	public List<PointVO> generatorPointVOs(){
 		List<PointVO> list = new ArrayList<PointVO>();
@@ -56,6 +56,15 @@ public class GeneratorXY {
 				pointVOTemp.setY(lttdTemp);
 				list.add(pointVOTemp);
 			}
+			
+			PointVO pointVOTempCenter = new PointVO();
+			pointVOTempCenter.setMis_id(101+"-"+101);
+			pointVOTempCenter.setLayerID(0);
+			pointVOTempCenter.setLayerName("weather");
+			pointVOTempCenter.setName("中间点");
+			pointVOTempCenter.setX(centerlgtd);
+			pointVOTempCenter.setY(centerlttd);
+			list.add(pointVOTempCenter);
 		}
 		return list;
 	}
@@ -82,12 +91,72 @@ public class GeneratorXY {
 		PointVO pointVOTemp = new PointVO();
 		pointVOTemp.setMis_id(i+"-"+j);
 		pointVOTemp.setLayerID(0);
-		pointVOTemp.setLayerName("weather");
+		pointVOTemp.setLayerName("weather1");
 		pointVOTemp.setName(name);
 		pointVOTemp.setX(lgtdTemp);
 		pointVOTemp.setY(lttdTemp);
 		return pointVOTemp;
 	}
+	
+	public PointVO getPointVOByXYExtend(int i,int j,String name){
+		double lgtdTemp = 0.0;
+		int iTemp = i-centerX;
+		if(iTemp<0){//在左侧，应该小于centerlgtd
+			lgtdTemp = centerlgtd+iTemp/lgtdUnit;
+		}else if(iTemp>0){//在右侧，应该大于centerlgtd
+			lgtdTemp = centerlgtd+iTemp/lgtdUnit;
+		}else{//相等
+			lgtdTemp = centerlgtd;
+		}
+		double lttdTemp = 0.0;
+		int jTemp = j-centerY;
+		if(jTemp<0){//在上面，应该大于centerlttd
+			lttdTemp = centerlttd+jTemp/lttdUnit;
+		}else if(jTemp>0){//在下面，应该小于centerlttd
+			lttdTemp = centerlttd+jTemp/lttdUnit;
+		}else{//相等
+			lttdTemp = centerlttd;
+		}
+		PointVO pointVOTemp = new PointVO();
+		pointVOTemp.setMis_id(i+"-"+j);
+		pointVOTemp.setLayerID(0);
+		pointVOTemp.setLayerName("weather1");
+		pointVOTemp.setName(name);
+		pointVOTemp.setX(lgtdTemp);
+		pointVOTemp.setY(lttdTemp);
+		return pointVOTemp;
+	}
+	
+	
+	public PointVO getPointVOByXYExtendBeijing(int i,int j,String name){
+		double lgtdTemp = 0.0;
+		int iTemp = i-centerX;
+		if(iTemp<0){//在左侧，应该小于centerlgtd
+			lgtdTemp = centerlgtd+iTemp*0.0116;
+		}else if(iTemp>0){//在右侧，应该大于centerlgtd
+			lgtdTemp = centerlgtd+iTemp*0.0116;
+		}else{//相等
+			lgtdTemp = centerlgtd;
+		}
+		double lttdTemp = 0.0;
+		int jTemp = j-centerY;
+		if(jTemp<0){//在上面，应该大于centerlttd
+			lttdTemp = centerlttd+jTemp*0.00925;
+		}else if(jTemp>0){//在下面，应该小于centerlttd
+			lttdTemp = centerlttd+jTemp*0.00925;
+		}else{//相等
+			lttdTemp = centerlttd;
+		}
+		PointVO pointVOTemp = new PointVO();
+		pointVOTemp.setMis_id(i+"-"+j);
+		pointVOTemp.setLayerID(0);
+		pointVOTemp.setLayerName("weather4");
+		pointVOTemp.setName(name);
+		pointVOTemp.setX(lgtdTemp);
+		pointVOTemp.setY(lttdTemp);
+		return pointVOTemp;
+	}
+	
 	
 	 /**  
      * 对double数据进行取精度.  
