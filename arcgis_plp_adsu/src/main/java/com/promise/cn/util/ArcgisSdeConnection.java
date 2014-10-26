@@ -58,10 +58,11 @@ public class ArcgisSdeConnection {
 		try {
 			sdeconn.startTransaction();
 			SeLayer insertLayer = getLayer(sdeconn, mpv.getLayerName());
-			String[] cols = new String[3];
+			String[] cols = new String[4];
 			cols[0] = new String("MIS_ID");
 			cols[1] = new String("NAME");
-			cols[2] = insertLayer.getSpatialColumn();
+			cols[2] = new String("CODE");
+			cols[3] = insertLayer.getSpatialColumn();
 			SeInsert insert = new SeInsert(sdeconn);
 			insert.intoTable(insertLayer.getName(), cols);
 			insert.setWriteMode(true);
@@ -74,7 +75,8 @@ public class ArcgisSdeConnection {
 			SeRow row = insert.getRowToSet();
 			row.setNString(0, mpv.getMis_id());
 			row.setNString(1, mpv.getName());
-			row.setShape(2, shape);
+			row.setNString(2, mpv.getCode());
+			row.setShape(3, shape);
 			insert.execute();
 			insert.close();
 			sdeconn.commitTransaction();
@@ -125,7 +127,7 @@ public class ArcgisSdeConnection {
 	}
 	
 	public void testMain()throws SeException{
-		PointVO p = new PointVO("201-201","中心点",116.50191,40.28937,0,"weather");
+		PointVO p = new PointVO("201-201","中心点",116.50191,40.28937,0,"weather","testcode");
 		SeConnection sdeconn = getSdeConnection("localhost", "5151", "xingjian", "sde", "sde");
 		SeLayer insertLayer = getLayer(sdeconn, "weather");
 		boolean boo = addMapPoint(p);
@@ -141,20 +143,22 @@ public class ArcgisSdeConnection {
 		  HSSFWorkbook wb = new HSSFWorkbook(fs); // 读取excel工作簿
 		  HSSFSheet sheet = wb.getSheetAt(0); // 读取excel的sheet，0表示读取第一个、1表示第二个.....
 		  // 获取sheet中总共有多少行数据sheet.getPhysicalNumberOfRows()
-		  for (int i = 1; i <= 234; i++) {
+		  for (int i = 1; i <= 65; i++) {
 		   HSSFRow row = sheet.getRow(i); // 取出sheet中的某一行数据
 		   if (row != null) {
 		    // 获取该行中总共有多少列数据row.getLastCellNum()
 		     HSSFCell cell1 = row.getCell((short) 0); // 获取该行中的一个单元格对象
 		     HSSFCell cell2 = row.getCell((short) 1);
 		     HSSFCell cell3 = row.getCell((short) 2);
+		     HSSFCell cell4 = row.getCell((short) 3);
 		     // 判断单元格数据类型，这个地方值得注意：当取某一行中的数据的时候，需要判断数据类型，否则会报错
 		     // java.lang.NumberFormatException: You cannot get a string
 		     // value from a numeric cell等等错误
-		     int x = (int)cell1.getNumericCellValue();
-		     int y = (int)cell2.getNumericCellValue();
-		     String name = cell3.getStringCellValue();
-		     PointVO p =g.getPointVOByXYExtendBeijing(x,y,name);
+		     int x = (int)cell4.getNumericCellValue();
+		     int y = (int)cell3.getNumericCellValue();
+		     String name = cell1.getStringCellValue();
+		     String code = cell2.getStringCellValue();
+		     PointVO p =g.getPointVOByXYExtendBeijing(x,y,name,code);
 		     addMapPoint(p);
 		   }
 		  }
@@ -179,8 +183,9 @@ public class ArcgisSdeConnection {
 	 */
 	public static void main(String[] args) throws Exception {
 		ArcgisSdeConnection asc = new ArcgisSdeConnection();
-		asc.getSdeConnection("localhost", "5151", "xingjian", "sde", "sde");
-		//asc.generatorXYInsertDB();
+//		asc.getSdeConnection("localhost", "5151", "xingjian", "sde", "sde");
+		asc.getSdeConnection("172.18.18.203", "5151", "emdb", "sde", "sde");
+//		asc.generatorXYInsertDB();
 		asc.readExcel();
 	}
 

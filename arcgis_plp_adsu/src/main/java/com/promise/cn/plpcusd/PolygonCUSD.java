@@ -75,9 +75,9 @@ public class PolygonCUSD {
 	 */
 	public static void main(String[] args) {
 		PolygonCUSD pcusd = new PolygonCUSD();
-		PointVO pointvo1 = new PointVO("000001", "测试数据", 117.36, 36.0000, 0,"");
-		PointVO pointvo2 = new PointVO("000001", "测试数据", 117.37, 36.1100, 0,"");
-		PointVO pointvo3 = new PointVO("000001", "测试数据", 117.365, 36.4100, 0,"");
+		PointVO pointvo1 = new PointVO("000001", "测试数据", 117.36, 36.0000, 0,"","");
+		PointVO pointvo2 = new PointVO("000001", "测试数据", 117.37, 36.1100, 0,"","");
+		PointVO pointvo3 = new PointVO("000001", "测试数据", 117.365, 36.4100, 0,"","");
 		List<PointVO> points = new ArrayList<PointVO>();
 		points.add(pointvo1);
 		points.add(pointvo2);

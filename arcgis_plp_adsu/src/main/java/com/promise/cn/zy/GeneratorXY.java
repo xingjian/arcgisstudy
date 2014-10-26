@@ -128,7 +128,7 @@ public class GeneratorXY {
 	}
 	
 	
-	public PointVO getPointVOByXYExtendBeijing(int i,int j,String name){
+	public PointVO getPointVOByXYExtendBeijing(int i,int j,String name,String code){
 		double lgtdTemp = 0.0;
 		int iTemp = i-centerX;
 		if(iTemp<0){//在左侧，应该小于centerlgtd
@@ -150,10 +150,11 @@ public class GeneratorXY {
 		PointVO pointVOTemp = new PointVO();
 		pointVOTemp.setMis_id(i+"-"+j);
 		pointVOTemp.setLayerID(0);
-		pointVOTemp.setLayerName("weather4");
+		pointVOTemp.setLayerName("weatherstation");
 		pointVOTemp.setName(name);
 		pointVOTemp.setX(lgtdTemp);
 		pointVOTemp.setY(lttdTemp);
+		pointVOTemp.setCode(code);
 		return pointVOTemp;
 	}
 	

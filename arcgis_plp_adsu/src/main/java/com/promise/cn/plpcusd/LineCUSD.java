@@ -76,8 +76,8 @@ public class LineCUSD {
 	 */
 	public static void main(String[] args) {
 		LineCUSD pcusd = new LineCUSD();
-		PointVO pointvo1 = new PointVO("000001", "测试数据", 117.36, 36.0000, 0,"LineVO");
-		PointVO pointvo2 = new PointVO("000001", "测试数据", 117.37, 36.1100, 0,"LineVO");
+		PointVO pointvo1 = new PointVO("000001", "测试数据", 117.36, 36.0000, 0,"LineVO","");
+		PointVO pointvo2 = new PointVO("000001", "测试数据", 117.37, 36.1100, 0,"LineVO","");
 		List<PointVO> points = new ArrayList<PointVO>();
 		points.add(pointvo1);
 		points.add(pointvo2);

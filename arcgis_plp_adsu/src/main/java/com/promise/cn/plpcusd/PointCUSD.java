@@ -64,7 +64,7 @@ public class PointCUSD {
 	 */
 	public static void main(String[] args) {
 		PointCUSD pcusd = new PointCUSD();
-		PointVO pointvo = new PointVO("000001", "测试数据", 117.36, 36.0000, 0,"PointVO");
+		PointVO pointvo = new PointVO("000001", "测试数据", 117.36, 36.0000, 0,"PointVO","");
 		pcusd.save(pointvo);
 	}
 

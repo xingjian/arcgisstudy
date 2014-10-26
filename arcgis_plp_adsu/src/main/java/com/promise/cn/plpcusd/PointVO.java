@@ -24,17 +24,20 @@ public class PointVO {
 	private int layerID;
 	
 	private String layerName;
+	
+	private String code;
 
 	public PointVO(){
 	}
 	
-	public PointVO(String mis_id,String name,double x,double y,int layerID,String layerName){
+	public PointVO(String mis_id,String name,double x,double y,int layerID,String layerName,String code){
 		this.mis_id = mis_id;
 		this.name = name;
 		this.x = x;
 		this.y = y;
 		this.layerID = layerID;
 		this.layerName = layerName;
+		this.code = code;
 	}
 	
 	public String getMis_id() {
@@ -84,5 +87,15 @@ public class PointVO {
 	public void setLayerName(String layerName) {
 		this.layerName = layerName;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	
 	
 }
