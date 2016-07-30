@@ -25,6 +25,26 @@ public class GeneratorXY {
 	public double lgtdUnit = 111.000;
 	public double lttdUnit = 111.400;
 	
+	
+	public double length(PointVO v1, PointVO v2){
+		double d1 = (Math.abs(v1.getX() - v2.getX()))*lgtdUnit;
+		double d2 = (Math.abs(v1.getY() - v2.getY()))*lttdUnit;
+		double result = Math.sqrt((Math.pow(d1, 2)+Math.pow(d2, 2)))*1000;
+		return result; 
+	}
+	
+	public double getDistance(double lng1,double lat1,double lng2,double lat2){
+        double radLat1 = Math.toRadians(lat1);
+        double radLat2 = Math.toRadians(lat2);
+        double a = radLat1 - radLat2;
+        double b = Math.toRadians(lng1) - Math.toRadians(lng2);
+        double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1)
+                * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+        s = s * 6378137.0;// 取WGS84标准参考椭球中的地球长半径(单位:m)
+        s = Math.round(s * 10000) / 10000;
+        return s;
+    }
+	
 	public List<PointVO> generatorPointVOs(){
 		List<PointVO> list = new ArrayList<PointVO>();
 		for(int i=1;i<=xMax;i++){
@@ -178,7 +198,21 @@ public class GeneratorXY {
 	 */
 	public static void main(String[] args) {
 		GeneratorXY g = new GeneratorXY();
-		PointVO p = g.getPointVOByXY(100,100,"中心点");
-		System.out.println(p.getX()+"***"+p.getY());
+//		PointVO p = g.getPointVOByXY(100,100,"中心点");
+//		System.out.println(p.getX()+"***"+p.getY());
+//		116.354708  40.711341   116.888307  40.704587
+		PointVO p1 = new PointVO();
+		p1.setX(116.354708);
+		p1.setY(40.711341);
+		
+		PointVO p2 = new PointVO();
+		p2.setX(116.888307);
+		p2.setY(40.704587);
+		double result = g.length(p1, p2);
+		System.out.println(result);
+		//116.353915 , 40.711770 ,  116.355031 , 40.710677
+		double r = g.getDistance(116.354708, 40.711341,116.888307,40.704587);
+		double r1 = g.getDistance(116.353915 , 40.711770 ,  116.355031 , 40.710677);//153
+		System.out.println(r1);
 	}
 }
